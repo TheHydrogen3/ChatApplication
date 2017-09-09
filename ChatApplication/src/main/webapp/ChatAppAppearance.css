@@ -1,0 +1,18 @@
+
+*{margin:0;padding:0}
+html,body {
+    widht: 100vw;
+    height: 100vh;
+    background-color: rgb(52, 58, 68);
+}
+
+#forum {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: scroll;
+}
+.container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
