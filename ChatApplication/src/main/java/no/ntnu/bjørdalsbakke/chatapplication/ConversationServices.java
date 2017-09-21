@@ -35,7 +35,7 @@ public class ConversationServices {
         List<Message> result = null;
         if(name != null)
         {
-            result = em.createQuery("Select m From Messaqge m",
+            result = em.createQuery("Select m From Message m",
             Message.class).getResultList();
         }
         
@@ -47,11 +47,19 @@ public class ConversationServices {
     public Message addMessage(@QueryParam("name") String name,
             Message message)
     {
+        
         System.out.println("addMessage name = " + name + "message " + message);
-        Conversation c = em.find(Conversation.class, name);
-        if (c != null)
+        Conversation conv = em.find(Conversation.class, name);
+        
+        if(conv == null) {
+            conv = new Conversation();
+            conv.setId(name);
+            em.persist(conv);
+        }
+        
+        if (conv != null)
         {
-            message.setConversation(c);
+            message.setConversation(conv);
             em.persist(message);
             
         }

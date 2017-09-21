@@ -1,19 +1,18 @@
 
 class ConversationForum {
    constructor() {
-       this.photo = document.querySelector("#photo");
+       this.conversation = document.querySelector("#conversations");
        this.forum = document.querySelector("#forum");
        this.message = document.querySelector("#message");
        
        
-       this.name = new URL(document.URL).searchParams.get("name");
-       this.loadImage(this.name);
+       this.name = prompt("Please enter your username", "Username");
        
        this.message.onchange = event => {
           fetch('api/messages/add?name=' + this.name,
             {
              method: 'POST', 
-             body : JSON.stringify(new Message('Mikael',event.target.value)),
+             body : JSON.stringify(new Message(this.name,event.target.value)),
              headers: {'Content-Type' : 'application/json; charset=UTF-8'}
             })
            .then(response => response.json())
@@ -38,23 +37,17 @@ class ConversationForum {
        }
        
    } 
-   
-   loadImage(name) {
-       let img = document.createElement('img');
-       img.src = 'api/store/' + name + '?width=200';
-       this.photo.appendChild(img);
-   }
-   
+
 }
 
 class Message {
     constructor(user, text) {
         this.user = user;
         this.text = text;
-        this.timestamp = null;
+        this.timestamp = new Date();
     }
 }
 
-let forum = new PhotoForum();
+let forum = new ConversationForum();
 
 
