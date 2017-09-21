@@ -1,7 +1,7 @@
 
 class ConversationForum {
    constructor() {
-       this.conversation = document.querySelector("#conversations");
+       this.conversation = document.querySelector("#conversation");
        this.forum = document.querySelector("#forum");
        this.message = document.querySelector("#message");
        

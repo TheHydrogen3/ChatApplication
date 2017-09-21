@@ -47,9 +47,9 @@ public class ConversationServices {
     public Message addMessage(@QueryParam("name") String name,
             Message message)
     {
-        
-        System.out.println("addMessage name = " + name + "message " + message);
         Conversation conv = em.find(Conversation.class, name);
+        System.out.println("addMessage name = " + name + "message " + message);
+        
         
         if(conv == null) {
             conv = new Conversation();
